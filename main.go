@@ -267,11 +267,16 @@ func clearTempFolder() {
 		duration := nextHour.Sub(now)
 		// 等待到下一个小时
 		time.Sleep(duration)
-		// 清空 temp 文件夹
+		// 清空 temp results 文件夹
 		if err := clearDirectory(TMP); err != nil {
 			log.Error(fmt.Sprintf("清空 temp 文件夹出错: %v\n", err))
 		} else {
 			log.Info("temp 文件夹已清空")
+		}
+		if err := clearDirectory(RESULT); err != nil {
+			log.Error(fmt.Sprintf("清空 results 文件夹出错: %v\n", err))
+		} else {
+			log.Info("result 文件夹已清空")
 		}
 	}
 }
