@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+</head>
+<body>
+    <h1>Upload a File</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".zip">
+        <!-- 点击提交的时候返回结果 -->
+        <input type="submit" value="Upload"> 
+    </form>
+    <h1>Example List</h1>
+    <ul>
+        {{range .Files}}
+        <li>
+            <a href="/download/{{ .Name }}">{{ .Name }}</a>
+        </li>
+        {{end}}
+    </ul>
+</body>
+</html>
