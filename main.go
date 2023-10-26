@@ -241,8 +241,8 @@ func executeMovescanner(inputDir string) (string, error) {
 	bytecodeDir := findBytecodeFolder(inputDir)
 
 	// 运行 MoveScanner
-	log.Info(fmt.Sprintf("MoveScanner -p %s -n -o %s", bytecodeDir, result_json))
-	movescannerCmd := exec.Command("MoveScanner", "-p", bytecodeDir, "-n", "-o", result_json)
+	log.Info(fmt.Sprintf("./MoveScanner -p %s -n -o %s", bytecodeDir, result_json))
+	movescannerCmd := exec.Command("./MoveScanner", "-p", bytecodeDir, "-n", "-o", result_json)
 	_, err := movescannerCmd.CombinedOutput()
 	if err != nil {
 		return "", err
