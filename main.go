@@ -10,6 +10,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -241,8 +242,14 @@ func executeMovescanner(inputDir string) (string, error) {
 	bytecodeDir := findBytecodeFolder(inputDir)
 
 	// 运行 MoveScanner
+	var MOVESCANNER = "./MoveScanner"
+	if runtime.GOOS == "linux" {
+		MOVESCANNER = "./MoveScanner"
+	} else if runtime.GOOS == "darwin" {
+		MOVESCANNER = "./MoveScanner_m1"
+	}
 	log.Info(fmt.Sprintf("./MoveScanner -p %s -n -o %s", bytecodeDir, result_json))
-	movescannerCmd := exec.Command("./MoveScanner", "-p", bytecodeDir, "-n", "-o", result_json)
+	movescannerCmd := exec.Command(MOVESCANNER, "-p", bytecodeDir, "-n", "-o", result_json)
 	_, err := movescannerCmd.CombinedOutput()
 	if err != nil {
 		return "", err
