@@ -64,7 +64,7 @@ func main() {
 		log.Info(fmt.Sprintf("Download %s", TEMPLATE+filename))
 		file, err := os.Open(TEMPLATE + filename)
 		if err != nil {
-			c.String(http.StatusNotFound, "文件未找到")
+			c.String(http.StatusNotFound, "Filed to find file")
 			return
 		}
 		defer file.Close()
@@ -72,7 +72,7 @@ func main() {
 		// 获取文件信息
 		fileInfo, err := file.Stat()
 		if err != nil {
-			c.String(http.StatusInternalServerError, "无法获取文件信息")
+			c.String(http.StatusInternalServerError, "Failed to get info of file")
 			return
 		}
 
